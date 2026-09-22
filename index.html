@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+  <script>document.documentElement.classList.add('js');</script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#171714">
@@ -40,6 +41,21 @@
 <body>
   <a class="skip-link" href="#contenido">Saltar al contenido</a>
 
+  <div class="intro-loader" aria-hidden="true">
+    <div class="intro-loader__grain"></div>
+    <div class="intro-loader__content">
+      <p>Aguadulce · Mediterráneo</p>
+      <div class="intro-loader__word">
+        <span>El</span>
+        <span>Grito</span>
+      </div>
+      <div class="intro-loader__line"><span></span></div>
+      <small>Del mar a la mesa</small>
+    </div>
+  </div>
+
+  <div class="scroll-progress" aria-hidden="true"><span></span></div>
+
   <div class="demo-ribbon" role="note">
     <span>Propuesta de demostración</span>
     <span class="demo-ribbon__divider" aria-hidden="true"></span>
@@ -73,7 +89,10 @@
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-4.35 7-11a7 7 0 1 0-14 0c0 6.65 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>
           Paseo Marítimo · Aguadulce
         </div>
-        <h1 id="hero-title">El mar,<br>a la mesa.</h1>
+        <h1 id="hero-title">
+          <span class="hero-title__line"><span>El mar,</span></span>
+          <span class="hero-title__line"><span>a la mesa.</span></span>
+        </h1>
         <p class="hero__lede">Pescado, marisco, tapas y arroces para disfrutar sin prisa, a pocos pasos del Mediterráneo.</p>
         <div class="hero__actions">
           <button class="button button--primary js-book" type="button">
@@ -90,6 +109,10 @@
           <span>1.370 reseñas en Google</span>
         </span>
       </div>
+      <a class="hero__scroll" href="#esencia" aria-label="Desplazarse a la historia de El Grito">
+        <span>Descubre</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v15m-6-6 6 6 6-6"/></svg>
+      </a>
     </section>
 
     <section class="quick-facts" aria-label="Información destacada">
@@ -108,6 +131,13 @@
         </article>
       </div>
     </section>
+
+    <div class="flavour-marquee" aria-hidden="true">
+      <div class="flavour-marquee__track">
+        <span>Pescado fresco</span><i>•</i><span>Marisco</span><i>•</i><span>Arroces</span><i>•</i><span>Tapas</span><i>•</i><span>Aguadulce</span><i>•</i>
+        <span>Pescado fresco</span><i>•</i><span>Marisco</span><i>•</i><span>Arroces</span><i>•</i><span>Tapas</span><i>•</i><span>Aguadulce</span><i>•</i>
+      </div>
+    </div>
 
     <section class="story section" id="esencia" aria-labelledby="story-title">
       <div class="container story__grid">
@@ -179,6 +209,7 @@
 
     <section class="reservation-cta section" aria-labelledby="reserve-title">
       <div class="container reservation-cta__inner reveal">
+        <div class="reservation-cta__ghost" aria-hidden="true">Reserva · Reserva · Reserva</div>
         <p class="kicker kicker--light">Tu mesa, en menos de un minuto</p>
         <h2 id="reserve-title">¿Nos vemos<br>junto al mar?</h2>
         <p>Elige día, hora y zona. La experiencia de reservas MesaFlow está pensada para funcionar igual de bien desde el móvil.</p>
@@ -368,6 +399,8 @@
     </div>
   </dialog>
 
+    <script src="assets/vendor/gsap.min.js" defer></script>
+    <script src="assets/vendor/ScrollTrigger.min.js" defer></script>
   <script src="script.js" defer></script>
 </body>
 </html>
