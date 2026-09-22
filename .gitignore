@@ -1,0 +1,10 @@
+.vercel/
+node_modules/
+lighthouse-report.json
+design-system/
+PROGRESS.md
+assets/el-grito-01.jpg
+assets/el-grito-02.jpg
+assets/el-grito-06.jpg
+assets/el-grito-07-768.jpg
+assets/el-grito-09-768.jpg
