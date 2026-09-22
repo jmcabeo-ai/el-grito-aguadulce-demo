@@ -18,8 +18,10 @@
 
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
 body {
   margin: 0;
+  overflow-x: clip;
   color: var(--ink);
   background: var(--paper);
   font-family: var(--sans);
@@ -157,7 +159,7 @@ a { color: inherit; text-decoration: none; }
   letter-spacing: .04em;
   text-transform: uppercase;
 }
-.nav-links { display: flex; align-items: center; gap: 30px; }
+.nav-links { display: flex; align-items: center; gap: 20px; }
 .nav-links > a {
   color: rgba(255, 255, 255, .84);
   font-size: .86rem;
@@ -267,6 +269,7 @@ a { color: inherit; text-decoration: none; }
 .hero__rating-score { font-family: var(--serif); font-size: 1.8rem; line-height: 1; }
 .hero__rating-copy { display: grid; font-size: .72rem; line-height: 1.25; }
 .stars { color: #f5b740; letter-spacing: .08em; }
+.star-muted { opacity: .35; }
 .hero__scroll {
   position: absolute;
   left: 50%;
@@ -327,7 +330,7 @@ a { color: inherit; text-decoration: none; }
 .kicker { margin: 0 0 18px; color: var(--coral-dark); font-size: .73rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; }
 .kicker--light { color: #ffc5b4; }
 .story__grid { display: grid; grid-template-columns: .82fr 1.18fr; align-items: center; gap: 9vw; }
-.story h2, .section-heading h2, .visit h2, .reservation-cta h2 {
+.story h2, .section-heading h2, .visit h2, .reservation-cta h2, .reviews h2, .faq h2 {
   margin: 0;
   font-family: var(--serif);
   font-size: clamp(3.2rem, 7vw, 6.2rem);
@@ -381,6 +384,38 @@ a { color: inherit; text-decoration: none; }
 .menu-list li span:last-child { color: #8a8378; font-size: .7rem; }
 .menu-list__note { margin: 24px 0 0; color: #6d675e; font-size: .78rem; line-height: 1.5; }
 
+.gallery { background: var(--paper); }
+.section-heading--ink > p { color: var(--ink-soft); }
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-auto-rows: 280px;
+  gap: 18px;
+}
+.gallery-card { position: relative; grid-column: span 5; margin: 0; overflow: hidden; background: var(--paper-deep); }
+.gallery-card--tall { grid-column: span 7; grid-row: span 2; }
+.gallery-card--wide { grid-column: span 12; height: 360px; }
+.gallery-card img { width: 100%; height: 100%; object-fit: cover; transition: transform .65s cubic-bezier(.2,.75,.2,1); }
+.gallery-card::after { content: ""; position: absolute; inset: 45% 0 0; background: linear-gradient(0deg, rgba(9,10,9,.72), transparent); pointer-events: none; }
+.gallery-card:hover img { transform: scale(1.035); }
+.gallery-card figcaption { position: absolute; left: 24px; bottom: 18px; z-index: 1; color: white; font-family: var(--serif); font-size: 1.15rem; }
+.gallery-action { margin-top: 30px; display: flex; align-items: center; justify-content: space-between; gap: 30px; }
+.gallery-action p { margin: 0; color: #69645b; }
+
+.reviews { background: var(--coral); color: white; }
+.reviews__grid { display: grid; grid-template-columns: .72fr 1.28fr; gap: 8vw; align-items: center; }
+.reviews__score { min-height: 480px; padding-right: 6vw; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; border-right: 1px solid rgba(255,255,255,.28); }
+.reviews__score > strong { font-family: var(--serif); font-size: clamp(7rem, 14vw, 12rem); font-weight: 700; line-height: .82; letter-spacing: -.08em; }
+.reviews__score .stars { margin-top: 24px; color: white; font-size: 1.15rem; }
+.reviews__score > p:not(.kicker) { margin: 6px 0 30px; color: rgba(255,255,255,.75); }
+.reviews__content .kicker { margin-bottom: 22px; }
+.reviews h2 { margin: 0 0 38px; }
+.review-themes { display: grid; }
+.review-themes article { padding: 22px 0; display: grid; grid-template-columns: 42px 1fr; gap: 18px; border-top: 1px solid rgba(255,255,255,.25); }
+.review-themes article > span { padding-top: 3px; color: rgba(255,255,255,.58); font-size: .72rem; font-weight: 700; }
+.review-themes h3 { margin: 0 0 4px; font-family: var(--serif); font-size: 1.25rem; }
+.review-themes p { max-width: 500px; margin: 0; color: rgba(255,255,255,.74); }
+
 .reservation-cta { padding: 0; background: var(--ink); }
 .reservation-cta__inner {
   position: relative;
@@ -423,8 +458,7 @@ a { color: inherit; text-decoration: none; }
 .reservation-cta h2 { position: relative; font-size: clamp(4rem, 8vw, 7rem); }
 .reservation-cta__inner > p:not(.kicker) { max-width: 590px; margin: 28px auto; color: rgba(255, 255, 255, .75); font-size: 1.1rem; }
 .reservation-cta .button { justify-self: center; }
-.reservation-cta__powered { margin-top: 45px; display: flex; align-items: center; justify-content: center; gap: 9px; color: rgba(255, 255, 255, .55); font-size: .7rem; text-transform: uppercase; letter-spacing: .12em; }
-.reservation-cta__powered strong { color: white; font-size: .86rem; }
+.reservation-cta__note { margin-top: 28px !important; color: rgba(255,255,255,.55) !important; font-size: .7rem !important; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
 
 .visit { background: var(--white); }
 .visit__grid { display: grid; grid-template-columns: .85fr 1.15fr; gap: 8vw; align-items: stretch; }
@@ -444,6 +478,21 @@ a { color: inherit; text-decoration: none; }
 .visit__map { min-height: 640px; background: var(--paper-deep); }
 .visit__map iframe { width: 100%; height: 100%; min-height: 640px; border: 0; filter: grayscale(.2) contrast(.95) sepia(.08); }
 
+.faq { background: var(--paper-deep); }
+.faq__grid { display: grid; grid-template-columns: .72fr 1.28fr; gap: 9vw; align-items: start; }
+.faq__intro { position: sticky; top: 120px; }
+.faq__intro h2 { margin: 0; }
+.faq__intro > p:not(.kicker) { max-width: 430px; margin: 28px 0; color: #645f57; font-size: 1.05rem; }
+.faq__list { border-top: 1px solid var(--line); }
+.faq details { border-bottom: 1px solid var(--line); }
+.faq summary { position: relative; padding: 28px 54px 28px 0; list-style: none; cursor: pointer; font-family: var(--serif); font-size: 1.32rem; font-weight: 700; line-height: 1.25; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::before, .faq summary::after { content: ""; position: absolute; top: 50%; right: 8px; width: 18px; height: 1px; background: var(--ink); transition: transform .2s ease; }
+.faq summary::after { transform: rotate(90deg); }
+.faq details[open] summary::after { transform: rotate(0); }
+.faq details p { max-width: 640px; margin: -6px 54px 28px 0; color: #625e56; }
+.faq details a { font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+
 .footer { padding: 70px 0; background: #0e0f0e; color: rgba(255, 255, 255, .65); }
 .footer__grid { display: grid; grid-template-columns: 1.25fr .7fr 1fr; gap: 70px; }
 .brand--footer .brand__name { color: white; }
@@ -458,7 +507,7 @@ a { color: inherit; text-decoration: none; }
 .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
 .reveal.is-visible { opacity: 1; transform: none; }
 
-/* MesaFlow dialog */
+/* Reservation dialog */
 .booking-dialog {
   width: min(660px, calc(100% - 30px));
   max-height: min(850px, calc(100dvh - 30px));
@@ -475,7 +524,7 @@ a { color: inherit; text-decoration: none; }
 .booking-shell { min-height: 650px; }
 .booking-header { padding: 18px 22px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--line); }
 .booking-brand { display: flex; align-items: center; gap: 11px; }
-.booking-brand__mark { width: 38px; height: 38px; display: grid; place-items: center; border-radius: 11px; background: var(--sea); color: white; font-family: var(--serif); font-size: 1.12rem; }
+.booking-brand__mark { width: 38px; height: 38px; display: grid; place-items: center; border-radius: 50%; background: var(--sea); color: white; object-fit: cover; font-family: var(--serif); font-size: 1.12rem; }
 .booking-brand div { display: grid; line-height: 1.2; }
 .booking-brand strong { font-size: .92rem; }
 .booking-brand span:not(.booking-brand__mark) { color: #777167; font-size: .68rem; }
@@ -565,12 +614,15 @@ a { color: inherit; text-decoration: none; }
   .quick-facts__grid { grid-template-columns: 1fr; }
   .quick-facts article { min-height: 94px; border-right: 0; border-bottom: 1px solid var(--line); }
   .quick-facts article:last-child { border-bottom: 0; }
-  .story__grid, .visit__grid { grid-template-columns: 1fr; gap: 65px; }
+  .story__grid, .visit__grid, .reviews__grid, .faq__grid { grid-template-columns: 1fr; gap: 65px; }
   .story__copy { max-width: 640px; }
   .story__visual { min-height: 620px; }
   .section-heading { align-items: flex-start; flex-direction: column; gap: 26px; }
   .dish, .dish--wide { grid-column: span 6; }
   .menu-list { grid-column: span 6; }
+  .reviews__score { min-height: auto; padding: 0 0 60px; border-right: 0; border-bottom: 1px solid rgba(255,255,255,.28); }
+  .reviews__score > strong { font-size: 9rem; }
+  .faq__intro { position: static; }
   .visit__map, .visit__map iframe { min-height: 500px; }
   .footer__grid { grid-template-columns: 1fr 1fr; }
   .footer__legal { grid-column: span 2; }
@@ -600,7 +652,7 @@ a { color: inherit; text-decoration: none; }
   .quick-facts__grid { width: 100%; border-radius: 0; box-shadow: none; }
   .quick-facts article { padding-inline: 22px; }
   .section { padding: 80px 0; }
-  .story h2, .section-heading h2, .visit h2 { font-size: clamp(3rem, 15vw, 4.4rem); }
+  .story h2, .section-heading h2, .visit h2, .reviews h2, .faq h2 { font-size: clamp(3rem, 15vw, 4.4rem); }
   .body-large { margin-top: 26px; font-size: 1.05rem; }
   .story__visual { min-height: 490px; }
   .story__image--main { inset: 0 30px 50px 0; border-radius: 2px 70px 2px 2px; }
@@ -609,6 +661,14 @@ a { color: inherit; text-decoration: none; }
   .menu-grid { display: grid; grid-template-columns: 1fr; }
   .dish, .dish--wide, .menu-list { grid-column: 1; min-height: 355px; }
   .menu-list { min-height: auto; }
+  .gallery-grid { grid-template-columns: 1fr; grid-auto-rows: 270px; }
+  .gallery-card, .gallery-card--tall, .gallery-card--wide { grid-column: 1; grid-row: auto; height: 270px; }
+  .gallery-card--tall { height: 420px; }
+  .gallery-action { align-items: flex-start; flex-direction: column; gap: 12px; }
+  .reviews__grid { gap: 52px; }
+  .reviews__score { padding-bottom: 48px; }
+  .reviews__score > strong { font-size: 8rem; }
+  .review-themes article { grid-template-columns: 34px 1fr; gap: 12px; }
   .reservation-cta { padding: 0; }
   .reservation-cta__inner { width: 100%; min-height: 520px; padding: 75px 22px; }
   .reservation-cta h2 { font-size: 3.65rem; }
@@ -616,6 +676,8 @@ a { color: inherit; text-decoration: none; }
   .hours dd { text-align: left; }
   .visit__actions { flex-wrap: wrap; }
   .visit__map, .visit__map iframe { min-height: 390px; }
+  .faq summary { padding-block: 24px; font-size: 1.1rem; }
+  .faq details p { margin-right: 24px; }
   .footer__grid { grid-template-columns: 1fr; gap: 40px; }
   .footer__legal { grid-column: 1; }
   .mobile-book {

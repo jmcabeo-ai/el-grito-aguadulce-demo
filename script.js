@@ -242,8 +242,8 @@ bookingForm.addEventListener('submit', (event) => {
   const invalid = requiredFields.find((field) => !field.checkValidity());
   if (invalid) {
     detailsError.textContent = invalid.name === 'privacy'
-      ? 'Confirma que entiendes el carácter demostrativo del formulario.'
-      : 'Completa los campos obligatorios para ver la confirmación de ejemplo.';
+      ? 'Acepta el aviso de esta vista previa para continuar.'
+      : 'Completa los campos obligatorios para continuar.';
     invalid.focus();
     return;
   }
@@ -254,7 +254,7 @@ bookingForm.addEventListener('submit', (event) => {
   successPanel.hidden = false;
   progressBar.style.width = '100%';
   stepLabel.textContent = 'Completado';
-  stepName.textContent = 'Vista de confirmación';
+  stepName.textContent = 'Resumen de solicitud';
   if (canAnimate) {
     window.gsap.fromTo(
       [...successPanel.children],
@@ -353,7 +353,7 @@ const initMotion = () => {
     onEnter: (batch) => gsap.to(batch, { autoAlpha: 1, y: 0, duration: .78, stagger: .1, ease: 'power3.out', overwrite: true })
   });
 
-  ['.story h2', '.menu h2', '.reservation-cta h2', '.visit h2'].forEach((selector) => {
+  ['.story h2', '.menu h2', '.gallery h2', '.reviews h2', '.reservation-cta h2', '.visit h2', '.faq h2'].forEach((selector) => {
     const heading = document.querySelector(selector);
     if (!heading) return;
     gsap.fromTo(heading,
@@ -395,6 +395,15 @@ const initMotion = () => {
       { yPercent: 5, scale: 1.06, ease: 'none', scrollTrigger: { trigger: dish, start: 'top bottom', end: 'bottom top', scrub: .7 } }
     );
     dish.style.setProperty('--dish-delay', `${index * .04}s`);
+  });
+
+  document.querySelectorAll('.gallery-card').forEach((card, index) => {
+    const image = card.querySelector('img');
+    gsap.fromTo(image,
+      { yPercent: -3, scale: 1.04 },
+      { yPercent: 4, scale: 1.04, ease: 'none', scrollTrigger: { trigger: card, start: 'top bottom', end: 'bottom top', scrub: .8 } }
+    );
+    card.style.setProperty('--gallery-delay', `${index * .04}s`);
   });
 
   gsap.to('.reservation-cta__ghost', {
